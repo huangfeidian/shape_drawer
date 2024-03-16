@@ -1,14 +1,14 @@
 ﻿#pragma once
-
+#include <cstdint>
 namespace spiritsaway::shape_drawer
 {
 
 	struct Color
 	{
-		uint8_t r;
-		uint8_t g;
-		uint8_t b;
-		Color(uint8_t in_r = 255, uint8_t in_g = 255, uint8_t in_b = 255) :r(in_r), g(in_g), b(in_b)
+		std::uint8_t r;
+		std::uint8_t g;
+		std::uint8_t b;
+		Color(std::uint8_t in_r = 255, std::uint8_t in_g = 255, std::uint8_t in_b = 255) :r(in_r), g(in_g), b(in_b)
 		{
 
 		}

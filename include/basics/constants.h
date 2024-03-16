@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include <cmath>
+#include <cstdint>
 namespace spiritsaway::shape_drawer
 {
 	constexpr double pi()
