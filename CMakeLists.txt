@@ -47,6 +47,8 @@ ADD_LIBRARY(shape_drawer ${SHAPEDRAWER_SRC_LISTS})
 
 target_link_libraries(shape_drawer ${ZLIB_LIBRARIES} ${PNG_LIBRARIES} ${FREETYPE_LIBRARIES})
 
+target_include_directories(${CMAKE_PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:include/shape_drawer>)
+
 INCLUDE_DIRECTORIES(${SHAPEDRAWER_INCLUDE_DIR})
 
 ADD_EXECUTABLE(shape_test  ${SHAPEDRAWER_TEST_DIR}/shape_test.cpp )
