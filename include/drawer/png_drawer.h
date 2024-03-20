@@ -100,5 +100,12 @@ namespace spiritsaway::shape_drawer
 		PngImage& operator<<(const Annulus& annulus);
 		PngImage& operator<<(const Region& region);
 		PngImage& operator<<(const ArcText& arc_text);
+
+		template <typename T>
+		PngImage& add_shape(const T& in_shape)
+		{
+			in_shape.draw_png(*this);
+			return *this;
+		}
 	};
 }

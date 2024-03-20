@@ -424,16 +424,16 @@ namespace spiritsaway::shape_drawer
 	}
 	PngImage& PngImage::operator<<(const Rectangle& rect)
 	{
-		Line right_vec(rect.left, rect.right, rect.color);
+		Line right_vec(rect.left, rect.right, rect.stroke_color, rect.stroke_width);
 		Point diff = rect.right - rect.left;
 		//由于我们当前的坐标系的设置，diff向量的up方向是(diff.y,diff.x) 而不是(diff.y,-diff.x)
 		Point cur = rect.left;
 		float length_scale = (rect.height * 1.0f / sqrtf(diff.x * diff.x + diff.y * diff.y));
 		Point p_left_up = rect.left + Point(-diff.y, diff.x) * length_scale;
 		Point p_right_up = rect.right + Point(-diff.y, diff.x) * length_scale;
-		Line up_vec(p_left_up, rect.left, rect.color);
-		Line up_right(p_right_up, p_left_up,rect.color);
-		Line right_up(rect.right, p_right_up, rect.color);
+		Line up_vec(p_left_up, rect.left, rect.stroke_color, rect.stroke_width);
+		Line up_right(p_right_up, p_left_up, rect.stroke_color, rect.stroke_width);
+		Line right_up(rect.right, p_right_up, rect.stroke_color, rect.stroke_width);
 		*this << right_vec << up_vec << up_right << right_up;
 		if (rect.fill)
 		{

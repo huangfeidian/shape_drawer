@@ -155,13 +155,18 @@ namespace spiritsaway::shape_drawer
 		double len = edge.len();
 		double theta = 180*std::asin(-(rect.left.y - rect.right.y) / len)/pi();
 		graph<< "<rect x=\""<<rect.left.x<<"\" y=\""<<rect.left.y<<"\" ";
-		graph<<"width=\""<<len<<"\" height = \""<<rect.height<<"\" ";
+		graph<<"width=\""<<len<<"\" height=\""<<rect.height<<"\" ";
 		if (rect.fill)
 		{
-			graph << "style=\"fill:" << rect.color << ";opacity:" << rect.opacity << "\" ";
+			graph << "fill=\"" << rect.color << "\" opacity=\"" << rect.opacity << "\" ";
 		}
+		else
+		{
+			graph << "fill=\"none\" ";
+		}
+		graph << " stroke-width=\"" << rect.stroke_width << "\" stroke=\"" << rect.stroke_color<<"\" ";
 		
-		graph<<"transform = \"rotate("<<theta<<" "<<rect.left.x<<" "<<rect.left.y<<")\"";
+		graph<<"transform=\"rotate("<<theta<<" "<<rect.left.x<<" "<<rect.left.y<<")\"";
 		graph<<"/>\n";
 		return graph;
 	}

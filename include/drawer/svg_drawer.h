@@ -62,6 +62,14 @@ namespace spiritsaway::shape_drawer
 			output << point.x << "," << point.y << " ";
 			return *this;
 		}
+		
+		template <typename T>
+		SvgGraph& add_shape(const T& in_shape)
+		{
+			in_shape.draw_svg(*this);
+			return *this;
+		}
+
 		~SvgGraph();
 	};
 }
