@@ -1,4 +1,7 @@
 ﻿#pragma once
+#ifdef WITH_PNG_OUTPUT
+
+
 #include <sstream>
 #include <string>
 #include <vector>
@@ -6,8 +9,6 @@
 #include <algorithm>
 #include <iterator>
 #include <cmath>
-#include <png.h>
-#include <zlib.h>
 #include <stack>
 
 
@@ -109,3 +110,4 @@ namespace spiritsaway::shape_drawer
 		}
 	};
 }
+#endif

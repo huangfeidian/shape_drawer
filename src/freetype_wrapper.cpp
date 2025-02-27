@@ -1,4 +1,5 @@
-﻿#include <freetype_wrapper.h>
+﻿#ifdef WITH_PNG_OUTPUT
+#include <freetype_wrapper.h>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
@@ -235,3 +236,4 @@ freetype_wrapper::point_grey_t freetype_wrapper::draw_text_along_line(std::pair<
 	}
 }
 
+#endif

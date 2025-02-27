@@ -1,10 +1,15 @@
-﻿#include <unordered_map>
+﻿#ifdef WITH_PNG_OUTPUT
+
+
+#include <unordered_map>
 #include <string>
 #include <sstream>
 #include <drawer/png_drawer.h>
 #include <iostream>
 #include <fstream>
 #include <basics/utf8_util.h>
+#include <png.h>
+#include <zlib.h>
 
 namespace spiritsaway::shape_drawer
 {
@@ -566,3 +571,4 @@ namespace spiritsaway::shape_drawer
 		return *this;
 	}
 }
+#endif

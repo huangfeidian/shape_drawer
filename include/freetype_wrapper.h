@@ -1,5 +1,5 @@
 #pragma once
-
+#ifdef WITH_PNG_OUTPUT
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -32,3 +32,4 @@ namespace spiritsaway::shape_drawer
 		point_grey_t draw_text_along_line(std::pair<int,int> from, std::pair<int,int> to, std::vector<std::uint32_t> text, std::uint8_t font_size, std::string font_name);
 	};
 }
+#endif

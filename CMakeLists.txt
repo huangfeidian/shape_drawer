@@ -10,7 +10,13 @@ if(MSVC)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++latest")
 endif(MSVC)
 
+option(WITH_PNG "add png output support" OFF)
 
+FIND_PACKAGE(any_container CONFIG REQUIRED)
+
+INCLUDE_DIRECTORIES(${any_container_include_dirs})
+
+if(WITH_PNG)
 FIND_PACKAGE(PNG 1.2.9 REQUIRED)
 INCLUDE_DIRECTORIES(${PNG_INCLUDE_DIRS})
 # external library: zlib (mandatory)
@@ -28,13 +34,11 @@ ELSE(FREETYPE_FOUND)
 ENDIF(FREETYPE_FOUND)
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FREETYPE_FLAGS}")
 
-FIND_PACKAGE(any_container CONFIG REQUIRED)
 
-INCLUDE_DIRECTORIES(${any_container_include_dirs})
 
-FIND_PACKAGE(miniz CONFIG REQUIRED)
-FIND_PACKAGE(tinyxml2 CONFIG REQUIRED)
-
+# FIND_PACKAGE(miniz CONFIG REQUIRED)
+# FIND_PACKAGE(tinyxml2 CONFIG REQUIRED)
+endif()
 
 SET(SHAPEDRAWER_SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 SET(SHAPEDRAWER_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
@@ -45,7 +49,10 @@ SET(SHAPEDRAWER_TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 
 ADD_LIBRARY(shape_drawer ${SHAPEDRAWER_SRC_LISTS})
 
+if(WITH_PNG)
 target_link_libraries(shape_drawer ${ZLIB_LIBRARIES} ${PNG_LIBRARIES} ${FREETYPE_LIBRARIES})
+target_compile_definitions(shape_drawer PUBLIC WITH_PNG_OUTPUT=1)
+endif()
 
 target_include_directories(${CMAKE_PROJECT_NAME} INTERFACE $<INSTALL_INTERFACE:include/shape_drawer>)
 
@@ -53,12 +60,17 @@ INCLUDE_DIRECTORIES(${SHAPEDRAWER_INCLUDE_DIR})
 
 ADD_EXECUTABLE(shape_test  ${SHAPEDRAWER_TEST_DIR}/shape_test.cpp )
 ADD_EXECUTABLE(flood_test ${SHAPEDRAWER_TEST_DIR}/flood_test.cpp)
-ADD_EXECUTABLE(freetype_test ${SHAPEDRAWER_TEST_DIR}/freetype_test.cpp)
-
 target_link_libraries(shape_test shape_drawer)
 
 target_link_libraries(flood_test shape_drawer)
+
+if(WITH_PNG)
+ADD_EXECUTABLE(freetype_test ${SHAPEDRAWER_TEST_DIR}/freetype_test.cpp)
 target_link_libraries(freetype_test shape_drawer)
+endif()
+
+
+
 
 foreach(p LIB BIN INCLUDE)
 	set(var CMAKE_INSTALL_${p}DIR)

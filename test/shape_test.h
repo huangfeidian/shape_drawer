@@ -35,7 +35,11 @@ void shape_test_1()
 	Bezier bezier_2(Point(500, 500), Point(200, 700), Point(300, 600), Color(200, 230, 108), 2);
 	Bezier bezier_3(Point(500, 500), Point(200, 700), Point(200, 600), Color(200, 230, 108), 2);
 	SvgGraph svg_graph(font_info, svg_filename, radius, background_color);
+#ifdef WITH_PNG_OUTPUT
 	PngImage png_image(font_info, png_filename, radius, background_color);
+#else
+	SvgGraph png_image(font_info, png_filename, radius, background_color);
+#endif
 	svg_graph << rect_test_1;
 	png_image << rect_test_1;
 	svg_graph << rect_test_2;
@@ -84,7 +88,11 @@ void arc_test()
 	Arc arc_2(340, c_pi * 2 / 3, c_pi * 5 / 6, center, false,  Color(128, 128, 128), 0, 1.0, 8);
 	Arc arc_3(360, c_pi * 5 / 6 + c_pi, c_pi * 2 / 3 + c_pi, center, false,  Color(128, 128, 128));
 	SvgGraph svg_graph(font_info, svg_filename, radius, background_color);
+#ifdef WITH_PNG_OUTPUT
 	PngImage png_image(font_info, png_filename, radius, background_color);
+#else
+	SvgGraph png_image(font_info, png_filename, radius, background_color);
+#endif
 	std::vector<Arc> arcs;
 	arcs.push_back(arc);
 	arcs.push_back(arc_1);
@@ -112,7 +120,11 @@ void line_test()
 	Line line_3(Point(550, 400), Point(550, 450), Color(0, 255, 100), 30, 1.0);
 	Line line_4(Point(600, 400), Point(600, 450), Color(0, 255, 100), 40, 1.0);
 	SvgGraph svg_graph(font_info, svg_filename, radius, background_color);
+#ifdef WITH_PNG_OUTPUT
 	PngImage png_image(font_info, png_filename, radius, background_color);
+#else
+	SvgGraph png_image(font_info, png_filename, radius, background_color);
+#endif
 	std::vector<Line> lines;
 	lines.push_back(line_1);
 	lines.push_back(line_2);
@@ -137,7 +149,11 @@ void circle_test()
 	Circle circle_2(20, Point(450, 400), Color(0, 255, 100), 1.0, true);
 	Circle circle_3(40, Point(500, 400), Color(0, 255, 100), 1.0, true);
 	SvgGraph svg_graph(font_info, svg_filename, radius, background_color);
+#ifdef WITH_PNG_OUTPUT
 	PngImage png_image(font_info, png_filename, radius, background_color);
+#else
+	SvgGraph png_image(font_info, png_filename, radius, background_color);
+#endif
 	std::vector<Circle> circles;
 	circles.push_back(circle_1);
 	circles.push_back(circle_2);

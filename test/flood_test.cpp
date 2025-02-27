@@ -25,7 +25,11 @@ void flood_test()
 	string png_filename = "shape_drawer_flood_test_1.png";
 	string svg_filename = "shape_drawer_flood_test_1.svg";
 	std::unordered_map<string, pair<string, string>> font_info{ {"yahei",make_pair("C:/Windows/Fonts/msyhl.ttc", "microsoft yahei")} };
+#ifdef WITH_PNG_OUTPUT
 	PngImage png_image(font_info, png_filename, radius, background_color);
+#else
+	SvgGraph png_image(font_info, png_filename, radius, background_color);
+#endif
 	SvgGraph svg_graph(font_info, svg_filename, radius, background_color);
 	//shapes.tiles.push_back(cur_tile);
 	png_image << temp_region;
